@@ -10,7 +10,7 @@
     <section>
       <div class="main">
         <div class="left">
-          <h3>Gem: <span class="gem-cost">500</span></h3>
+          <h3>Cat <span class="gem-cost">777777</span></h3>
           <img
             src="./style/gem.png"
             alt=""
@@ -25,7 +25,7 @@
               <img src="./style/clicker-white.png" class="upgrade-image" />
             </div>
             <div class="mid-section">
-              <h4>Clicker</h4>
+              <h4>Brush</h4>
               <div class="cost-info">
                 <p>Cost: <span class="clicker-cost">10</span></p>
                 <img src="./style/gem.png" class="gem-img" />
@@ -37,10 +37,61 @@
             <div class="next-level-info">
               <p>
                 +<span class="clicker-increase">1</span> gems <br />
+                per click
+              </p>
+            </div>
+          </div>
+
+          <div class="upgrade" onclick="buySushi()">
+            <div class="left-section">
+              <img src="./style/sushi.png" class="upgrade-image-sushi" />
+            </div>
+            <div class="mid-section">
+              <h4>Sushi</h4>
+              <div class="cost-info">
+                <p>Cost: <span class="sushi-cost">130</span></p>
+                <img src="./style/gem.png" class="gem-img" />
+              </div>
+            </div>
+            <div class="right-section">
+              Level <span class="sushi-level">0</span>
+            </div>
+            <div class="next-level-info">
+              <p>
+                +<span class="sushi-increase">4</span> gems <br />
                 per second
               </p>
             </div>
           </div>
+
+          <div class="upgrade" onclick="buyMouse()">
+            <div class="left-section">
+              <img src="./style/mouse.png" class="upgrade-image-mouse" />
+            </div>
+            <div class="mid-section">
+              <h4>Mouse</h4>
+              <div class="cost-info">
+                <p>Cost: <span class="mouse-cost">850</span></p>
+                <img src="./style/gem.png" class="gem-img" />
+              </div>
+            </div>
+            <div class="right-section">
+              Level <span class="mouse.png-level">0</span>
+            </div>
+            <div class="next-level-info">
+              <p>
+                +<span class="mouse.png-increase">24</span> gems <br />
+                per second
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="statistics">
+        <div class="texts">
+          <p>GPC: <span id="gpc-text">1</span></p>
+          <p>GPS: <span id="gps-text">0</span></p>
         </div>
       </div>
     </section>
