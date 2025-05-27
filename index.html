@@ -3,95 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clicker Game</title>
+    <title>Happy Cat Clicker</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <section>
-      <div class="main">
-        <div class="left">
-          <h3>Cat <span class="gem-cost">777777</span></h3>
-          <img
-            src="./style/gem.png"
-            alt=""
-            class="gem-image"
-            onclick="incrementGem()"
-            draggable="false"
-          />
-        </div>
-        <div class="right">
-          <div class="upgrade" onclick="buyClicker()">
-            <div class="left-section">
-              <img src="./style/clicker-white.png" class="upgrade-image" />
-            </div>
-            <div class="mid-section">
-              <h4>Brush</h4>
-              <div class="cost-info">
-                <p>Cost: <span class="clicker-cost">10</span></p>
-                <img src="./style/gem.png" class="gem-img" />
-              </div>
-            </div>
-            <div class="right-section">
-              Level <span class="clicker-level">0</span>
-            </div>
-            <div class="next-level-info">
-              <p>
-                +<span class="clicker-increase">1</span> gems <br />
-                per click
-              </p>
-            </div>
-          </div>
-
-          <div class="upgrade" onclick="buySushi()">
-            <div class="left-section">
-              <img src="./style/sushi.png" class="upgrade-image-sushi" />
-            </div>
-            <div class="mid-section">
-              <h4>Sushi</h4>
-              <div class="cost-info">
-                <p>Cost: <span class="sushi-cost">130</span></p>
-                <img src="./style/gem.png" class="gem-img" />
-              </div>
-            </div>
-            <div class="right-section">
-              Level <span class="sushi-level">0</span>
-            </div>
-            <div class="next-level-info">
-              <p>
-                +<span class="sushi-increase">4</span> gems <br />
-                per second
-              </p>
-            </div>
-          </div>
-
-          <div class="upgrade" onclick="buyMouse()">
-            <div class="left-section">
-              <img src="./style/mouse.png" class="upgrade-image-mouse" />
-            </div>
-            <div class="mid-section">
-              <h4>Mouse</h4>
-              <div class="cost-info">
-                <p>Cost: <span class="mouse-cost">850</span></p>
-                <img src="./style/gem.png" class="gem-img" />
-              </div>
-            </div>
-            <div class="right-section">
-              Level <span class="mouse.png-level">0</span>
-            </div>
-            <div class="next-level-info">
-              <p>
-                +<span class="mouse.png-increase">24</span> gems <br />
-                per second
-              </p>
-            </div>
-          </div>
-        </div>
+    <section class="main">
+      <div id="victoryMessage" class="hidden">
+        🎉 Congrats! You have raised the happiest cat in the world 🐱💖
+        <br />
+        <button id="restartButton" onclick="restartGame()">🔄 Restart</button>
       </div>
 
-      <div class="statistics">
-        <div class="texts">
-          <p>GPC: <span id="gpc-text">1</span></p>
-          <p>GPS: <span id="gps-text">0</span></p>
+      <div class="left">
+        <h3>Happy Cattie, Happy Life</h3>
+        <img
+          src="./style/baby-cat.png"
+          alt="Cat"
+          id="catImage"
+          draggable="false"
+        />
+        <div id="progressContainer">
+          <div id="progressBar"></div>
+        </div>
+        <div class="status" id="catStage">Stage: Baby</div>
+        <div id="eggContainer" style="display: none; cursor: pointer">
+          <img src="./style/egg.png" alt="Egg" id="eggImage" width="150" />
+          <p>Click to hatch!</p>
+        </div>
+      </div>
+      <div class="right">
+        <div class="upgrade" onclick="game.brush.catAction()">
+          <div class="left-section">
+            <img src="./style/brush.png" class="upgrade-image" />
+          </div>
+          <div class="mid-section">
+            <h4>To pet</h4>
+            <p>The cat is feeling loved</p>
+          </div>
+        </div>
+        <div class="upgrade" onclick="game.sushi.catAction()">
+          <div class="left-section">
+            <img src="./style/sushi.png" class="upgrade-image" />
+          </div>
+          <div class="mid-section">
+            <h4>To feed</h4>
+            <p>The cat is feeling joy</p>
+          </div>
+        </div>
+        <div class="upgrade" onclick="game.mouse.catAction()">
+          <div class="left-section">
+            <img src="./style/mouse.png" class="upgrade-image" />
+          </div>
+          <div class="mid-section">
+            <h4>To play</h4>
+            <p>The cat is feeling happines</p>
+          </div>
         </div>
       </div>
     </section>
