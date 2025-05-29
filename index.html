@@ -11,9 +11,7 @@
       <div id="victoryMessage" class="hidden">
         🎉 Congrats! You have raised the happiest cat in the world 🐱💖
         <br />
-        <button id="restartButton" onclick="restartGame()">🔄 Restart</button>
       </div>
-
       <div class="left">
         <h3>Happy Cattie, Happy Life</h3>
         <img
@@ -26,10 +24,6 @@
           <div id="progressBar"></div>
         </div>
         <div class="status" id="catStage">Stage: Baby</div>
-        <div id="eggContainer" style="display: none; cursor: pointer">
-          <img src="./style/egg.png" alt="Egg" id="eggImage" width="150" />
-          <p>Click to hatch!</p>
-        </div>
       </div>
       <div class="right">
         <div class="upgrade" onclick="game.brush.catAction()">
@@ -37,8 +31,15 @@
             <img src="./style/brush.png" class="upgrade-image" />
           </div>
           <div class="mid-section">
-            <h4>To pet</h4>
-            <p>The cat is feeling loved</p>
+            <h4>Pet with the brush</h4>
+          </div>
+        </div>
+        <div class="upgrade" onclick="game.shower.catAction()">
+          <div class="left-section">
+            <img src="./style/shower.png" class="upgrade-image" />
+          </div>
+          <div class="mid-section">
+            <h4>Shower the cat</h4>
           </div>
         </div>
         <div class="upgrade" onclick="game.sushi.catAction()">
@@ -46,8 +47,24 @@
             <img src="./style/sushi.png" class="upgrade-image" />
           </div>
           <div class="mid-section">
-            <h4>To feed</h4>
-            <p>The cat is feeling joy</p>
+            <h4>Feed the cat with sushi</h4>
+          </div>
+        </div>
+
+        <div class="upgrade" onclick="game.milk.catAction()">
+          <div class="left-section">
+            <img src="./style/milk.png" class="upgrade-image" />
+          </div>
+          <div class="mid-section">
+            <h4>Feed the cat with milk</h4>
+          </div>
+        </div>
+        <div class="upgrade" onclick="game.laser.catAction()">
+          <div class="left-section">
+            <img src="./style/laser.png" class="upgrade-image" />
+          </div>
+          <div class="mid-section">
+            <h4>Play with the laser</h4>
           </div>
         </div>
         <div class="upgrade" onclick="game.mouse.catAction()">
@@ -55,8 +72,7 @@
             <img src="./style/mouse.png" class="upgrade-image" />
           </div>
           <div class="mid-section">
-            <h4>To play</h4>
-            <p>The cat is feeling happines</p>
+            <h4>Play with the mouse</h4>
           </div>
         </div>
       </div>

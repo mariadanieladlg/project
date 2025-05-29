@@ -1,6 +1,6 @@
 class Cat {
   constructor() {
-    this.stage = 0; // 0: bebé, 1: joven, 2: adulto
+    this.stage = 0;
     this.progress = 0;
     this.progressBar = document.getElementById("progressBar");
     this.catImage = document.getElementById("catImage");
@@ -15,10 +15,20 @@ class Cat {
   increaseProgress(amount = 1) {
     this.progress += amount;
 
-    const maxProgress = this.stage < 2 ? 3 : 3; // mismo límite, pero no evoluciona si es adulto
-    const progressPercent = Math.min((this.progress / 3) * 100, 100);
-
+    this.progress = Math.max(0, Math.min(this.progress, 3));
+    const progressPercent = (this.progress / 3) * 100;
     this.progressBar.style.width = `${progressPercent}%`;
+
+    if (this.progress === 0) {
+      document.getElementById(
+        "victoryMessage"
+      ).innerHTML = `💔 Oh no! The cat is sad.💔 <br> You overstimulated it. <br> Choose the right combination of inputs to help it grow. <br><br>
+  <button onclick="window.location.reload()" class="retry-button">🔄 Try Again 🔄</button>`;
+      document.getElementById("victoryMessage").style.display = "block";
+
+      game.isGameOver = true;
+      return;
+    }
 
     if (this.progress >= 3 && this.stage < 2) {
       this.evolve();
@@ -27,8 +37,8 @@ class Cat {
 
   evolve() {
     this.stage++;
-    this.progress = 3;
-    this.progressBar.style.width = "100%";
+    this.progress = 0;
+    this.progressBar.style.width = "0%";
     this.catImage.src = this.stages[this.stage].image;
     this.catStageText.textContent = `Stage: ${this.stages[this.stage].name}`;
     if (this.stage === 2) {
@@ -36,30 +46,49 @@ class Cat {
     }
   }
 }
+
 class Upgrade {
-  constructor(name, game) {
+  constructor(name, game, effect = 1) {
     this.name = name;
     this.game = game;
+    this.effect = effect;
   }
+
   catAction() {
-    this.game.cat.increaseProgress();
-    if (this.game.cat.stage === 2) {
+    if (this.game.isGameOver) return;
+    this.game.cat.increaseProgress(this.effect);
+
+    if (this.effect > 0 && this.game.cat.stage === 2) {
       this.game.cat.actionsPerformed.add(this.name);
 
       if (this.game.cat.actionsPerformed.size === 3) {
-        document.getElementById("victoryMessage").style.display = "block";
+        const messageBox = document.getElementById("victoryMessage");
+        messageBox.innerHTML = `
+  🎉 Congrats! You have raised the happiest cat in the world 🐱💖<br><br>
+  <button onclick="window.location.reload()" class="retry-button">🔄 Play Again 🔄</button>
+`;
+        messageBox.style.display = "block";
+        this.game.isGameOver = true;
       }
     }
   }
 }
+
 class Game {
   constructor() {
     this.cat = new Cat();
-    this.brush = new Upgrade("pet", this);
-    this.sushi = new Upgrade("feed", this);
-    this.mouse = new Upgrade("play", this);
+    this.isGameOver = false;
+
+    this.brush = new Upgrade("pet", this, 0.5);
+    this.sushi = new Upgrade("feed", this, 0.5);
+    this.mouse = new Upgrade("play", this, 0.5);
+
+    this.milk = new Upgrade("milk", this, -0.2);
+    this.shower = new Upgrade("shower", this, -0.2);
+    this.laser = new Upgrade("laser", this, -0.2);
   }
 }
+
 const game = new Game();
 function restartGame() {
   game.cat.stage = 0;
@@ -70,15 +99,3 @@ function restartGame() {
   document.getElementById("restartButton").style.display = "none";
   document.getElementById("victoryMessage").classList.add("hidden");
 }
-
-document.getElementById("restartButton").addEventListener("click", () => {
-  document.querySelector(".left").style.display = "none";
-  document.getElementById("victoryMessage").style.display = "none";
-  document.getElementById("eggContainer").style.display = "block";
-});
-
-document.getElementById("eggImage").addEventListener("click", () => {
-  document.querySelector(".left").style.display = "block";
-  document.getElementById("eggContainer").style.display = "none";
-  game.cat = new Cat(); // reinicia el gato
-});
